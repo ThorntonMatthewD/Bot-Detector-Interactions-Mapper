@@ -1,0 +1,7 @@
+networkx
+requests
+beautifulsoup4
+matplotlib
+mysql-connector-python
+modin[dask]
+python-dotenv
