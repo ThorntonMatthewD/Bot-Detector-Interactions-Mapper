@@ -96,7 +96,7 @@ def main():
     print("Percent: ", (round((bot)/(real+bot),5)*100),"%")
 
     df_transformed = df.copy()
-    df = None
+    del df
     mask = df_transformed['Prediction'] == 'Real_Player'
 
     df_transformed['Predicted_confidence'] = np.where(mask, df_transformed['Predicted_confidence'], df_transformed['Predicted_confidence'] * -1)
@@ -160,7 +160,7 @@ def main():
     """
 
     df_ncv = pd.merge(df_groups, df_process, how='inner',left_on='name',right_on='name')
-    df_process = None
+    del df_process
     df_ncv.sort_values(by='community_score')
 
     df_ncv_count = df_ncv.groupby('group_number').count().drop('community_score',axis=1)
@@ -178,7 +178,7 @@ def main():
     m2 = df_ncv_full['min'] < 0
     mask = m1&m2
     df_ncv_masked = df_ncv_full[mask].sort_values(by='name_count',ascending=False)
-    df_ncv_full = None
+    del df_ncv_full
 
     for group_index in df_ncv_masked.index.values:
         mask = df_ncv['group_number'] == group_index
